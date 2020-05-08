@@ -1,0 +1,332 @@
+#:kivy 1.9.1
+
+<BackgroundColor@Widget>
+    background_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<BackgroundLabel@Label+BackgroundColor>
+    background_color: 0, 0, 0, 0
+
+<MainMenuButton@Button>
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 0
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+    font_size: 50
+    width: 100
+    font_size: 50
+    background_normal: ''
+    background_color: 1, .525, .2, 1
+
+<GameButton@Button>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Line:
+            width: 3
+            rectangle: self.x, self.y, self.width, self.height
+    siz_hint_x: None
+    width: 200
+    font_size: 100
+    background_normal: 'OK'
+    background_color: 1, .525, .2, 1
+
+<GameLayout@GridLayout>:
+    cols: 3
+    row_force_default: True
+    col_default_width: 200
+    row_default_height: 200
+    pos_hint: { "center_x": 0.5 }
+    size_hint: None, None
+    size: self.minimum_size
+    top: self.height
+
+<SelectionMenuView>:
+    BoxLayout:
+        orientation: "vertical"
+        BackgroundLabel:
+            text: "Tic Tac Toe"
+            font_size: 100
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            width: 100
+            color: (1, .525, .2, 1)
+            markup: True
+            background_color: 1, 1, 1, 1
+        MainMenuButton:
+            id: btnRI
+            text: "Reinforcement method"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.reinforcement_release()
+
+        MainMenuButton:
+            id: btnMM
+            text: "Min Max method"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.minmax_release()
+
+<RLMainMenuView>:
+    BoxLayout:
+        orientation: "vertical"
+        BackgroundLabel:
+            text: "Tic Tac Toe"
+            font_size: 100
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            width: 100
+            color: (1, .525, .2, 1)
+            markup: True
+            background_color: 1, 1, 1, 1
+        MainMenuButton:
+            id: btnHumanPlayer
+            text: "Let me play first"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.btnRLHumanPlayer_release()
+
+        MainMenuButton:
+            id: btnAIPlayer
+            text: "Let AI play first"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.btnRLBotPlayer_release()
+
+        MainMenuButton:
+            id: btnExit
+            text: "Exit"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.btnRLExit_release()
+
+<MMMainMenuView>:
+    BoxLayout:
+        orientation: "vertical"
+        BackgroundLabel:
+            text: "Tic Tac Toe"
+            font_size: 100
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            width: 100
+            color: (1, .525, .2, 1)
+            markup: True
+            background_color: 1, 1, 1, 1
+        MainMenuButton:
+            id: btnHumanPlayer
+            text: "Let me play first"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.btnMMHumanPlayer_release()
+
+        MainMenuButton:
+            id: btnAIPlayer
+            text: "Let AI play first"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.btnMMBotPlayer_release()
+
+        MainMenuButton:
+            id: btnExit
+            text: "Exit"
+            font_name: 'fonts/AlfaSlabOne-Regular.ttf'
+            on_release: root.btnMMExit_release()
+
+<RLSinglePlayerView>:
+    GameLayout:
+        height: self.minimum_height
+        size_hint: 0.5, 0.5
+        pos_hint: {'x': .2, 'y': .2}
+        GameButton:
+            id: btn1
+            on_press: root.btnRLGame_press(btn1)
+            on_release: root.btnRLGame_release(btn1)
+
+        GameButton:
+            id: btn2
+            on_press: root.btnRLGame_press(btn2)
+            on_release: root.btnRLGame_release(btn2)
+
+        GameButton:
+            id: btn3
+            on_press: root.btnRLGame_press(btn3)
+            on_release: root.btnRLGame_release(btn3)
+
+        GameButton:
+            id: btn4
+            on_press: root.btnRLGame_press(btn4)
+            on_release: root.btnRLGame_release(btn4)
+
+        GameButton:
+            id: btn5
+            on_press: root.btnRLGame_press(btn5)
+            on_release: root.btnRLGame_release(btn5)
+
+        GameButton:
+            id: btn6
+            on_press: root.btnRLGame_press(btn6)
+            on_release: root.btnRLGame_release(btn6)
+
+        GameButton:
+            id: btn7
+            on_press: root.btnRLGame_press(btn7)
+            on_release: root.btnRLGame_release(btn7)
+
+        GameButton:
+            id: btn8
+            on_press: root.btnRLGame_press(btn8)
+            on_release: root.btnRLGame_release(btn8)
+
+        GameButton:
+            id: btn9
+            on_press: root.btnRLGame_press(btn9)
+            on_release: root.btnRLGame_release(btn9)
+
+<RLBotPlayerView>:
+    on_enter: root.btnRLGame_press(btn1)
+    GameLayout:
+        height: self.minimum_height
+        size_hint: 0.5, 0.5
+        pos_hint: {'x': .2, 'y': .2}
+        GameButton:
+            id: btn1
+            on_press: root.btnRLGame_press(btn1)
+            on_release: root.btnRLGame_release(btn1)
+
+        GameButton:
+            id: btn2
+            on_press: root.btnRLGame_press(btn2)
+            on_release: root.btnRLGame_release(btn2)
+
+        GameButton:
+            id: btn3
+            on_press: root.btnRLGame_press(btn3)
+            on_release: root.btnRLGame_release(btn3)
+
+        GameButton:
+            id: btn4
+            on_press: root.btnRLGame_press(btn4)
+            on_release: root.btnRLGame_release(btn4)
+
+        GameButton:
+            id: btn5
+            on_press: root.btnRLGame_press(btn5)
+            on_release: root.btnRLGame_release(btn5)
+
+        GameButton:
+            id: btn6
+            on_press: root.btnRLGame_press(btn6)
+            on_release: root.btnRLGame_release(btn6)
+
+        GameButton:
+            id: btn7
+            on_press: root.btnRLGame_press(btn7)
+            on_release: root.btnRLGame_release(btn7)
+
+        GameButton:
+            id: btn8
+            on_press: root.btnRLGame_press(btn8)
+            on_release: root.btnRLGame_release(btn8)
+
+        GameButton:
+            id: btn9
+            on_press: root.btnRLGame_press(btn9)
+            on_release: root.btnRLGame_release(btn9)
+
+<MMSinglePlayerView>:
+    GameLayout:
+        height: self.minimum_height
+        size_hint: 0.5, 0.5
+        pos_hint: {'x': .2, 'y': .2}
+        GameButton:
+            id: btn1
+            on_press: root.btnMMGame_press(btn1)
+            on_release: root.btnMMGame_release(btn1)
+
+        GameButton:
+            id: btn2
+            on_press: root.btnMMGame_press(btn2)
+            on_release: root.btnMMGame_release(btn2)
+
+        GameButton:
+            id: btn3
+            on_press: root.btnMMGame_press(btn3)
+            on_release: root.btnMMGame_release(btn3)
+
+        GameButton:
+            id: btn4
+            on_press: root.btnMMGame_press(btn4)
+            on_release: root.btnMMGame_release(btn4)
+
+        GameButton:
+            id: btn5
+            on_press: root.btnMMGame_press(btn5)
+            on_release: root.btnMMGame_release(btn5)
+
+        GameButton:
+            id: btn6
+            on_press: root.btnMMGame_press(btn6)
+            on_release: root.btnMMGame_release(btn6)
+
+        GameButton:
+            id: btn7
+            on_press: root.btnMMGame_press(btn7)
+            on_release: root.btnMMGame_release(btn7)
+
+        GameButton:
+            id: btn8
+            on_press: root.btnMMGame_press(btn8)
+            on_release: root.btnMMGame_release(btn8)
+
+        GameButton:
+            id: btn9
+            on_press: root.btnMMGame_press(btn9)
+            on_release: root.btnMMGame_release(btn9)
+
+<MMBotPlayerView>:
+    on_enter: root.btnMMGame_press(btn1)
+    GameLayout:
+        height: self.minimum_height
+        size_hint: 0.5, 0.5
+        pos_hint: {'x': .2, 'y': .2}
+        GameButton:
+            id: btn1
+            on_press: root.btnMMGame_press(btn1)
+            on_release: root.btnMMGame_release(btn1)
+
+        GameButton:
+            id: btn2
+            on_press: root.btnMMGame_press(btn2)
+            on_release: root.btnMMGame_release(btn2)
+
+        GameButton:
+            id: btn3
+            on_press: root.btnMMGame_press(btn3)
+            on_release: root.btnMMGame_release(btn3)
+
+        GameButton:
+            id: btn4
+            on_press: root.btnMMGame_press(btn4)
+            on_release: root.btnMMGame_release(btn4)
+
+        GameButton:
+            id: btn5
+            on_press: root.btnMMGame_press(btn5)
+            on_release: root.btnMMGame_release(btn5)
+
+        GameButton:
+            id: btn6
+            on_press: root.btnMMGame_press(btn6)
+            on_release: root.btnMMGame_release(btn6)
+
+        GameButton:
+            id: btn7
+            on_press: root.btnMMGame_press(btn7)
+            on_release: root.btnMMGame_release(btn7)
+
+        GameButton:
+            id: btn8
+            on_press: root.btnMMGame_press(btn8)
+            on_release: root.btnMMGame_release(btn8)
+
+        GameButton:
+            id: btn9
+            on_press: root.btnMMGame_press(btn9)
+            on_release: root.btnMMGame_release(btn9)
